@@ -8,45 +8,73 @@
         ResizeMode="NoResize"
         Title="Smart Audio Mixer Config" Height="450" Width="660" SizeToContent="WidthAndHeight">
     <Grid>
-        
+
         <!-- Ensures the Editor and Compiled app have the same Width and Height-->
-        <Rectangle x:Name="BackgroundRectangle" Fill="White" Width="660" Height="450" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Rectangle x:Name="BackgroundRectangle" Fill="White" Width="660" Height="420" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label x:Name="TitleLabel" Content="Smart Audio Mixer Config - © Teague Gillard 2025" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,395,0,0" FontFamily="Ebrima" FontSize="12" Foreground="Black"/>
 
-        <!-- Using Rectangles to Cover/Reveal an Image background as it uses 60% LESS GPU than using Progress Bars-->
-        <Rectangle x:Name="AudioBar1VolumeRectangle" Margin="50,124,0,0" Width="20" Height="300" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="Gray"/>
-        <Label x:Name="AudioBar1VolumeLabel" Content="Volume: 100%" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="17.5,95,0,0" FontFamily="Ebrima" FontSize="12"/>
-        <Button x:Name="AudioBar1MuteButton" Content="Mute" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,74,0,0" Width="80" Height="20" Click="AudioBar1MuteButton_Click"/>
-        <ComboBox x:Name="AudioBar1AppComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,44,0,0" Width="80" Height="20" SelectionChanged="AudioBar1AppComboBox_SelectionChanged"/>
+        <!-- Using Rectangles as it uses 60% LESS GPU than using Progress Bars-->
+        <Rectangle Margin="50,224,0,0" Width="20" Height="170" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="LimeGreen"/>
+        <Rectangle Margin="50,144,0,0" Width="20" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="Yellow"/>
+        <Rectangle Margin="50,94,0,0" Width="20" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="Red"/>
+        <Rectangle x:Name="AudioBar1VolumeRectangle" Margin="50,94,0,0" Width="20" Height="300" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="Gray"/>
+        <Label x:Name="AudioBar1VolumeTextLabel" Content="Volume:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,65,0,0" FontFamily="Ebrima" FontSize="12"/>
+        <Label x:Name="AudioBar1VolumeLabel" Content="100%" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,65,555,0" FontFamily="Ebrima" FontSize="12"/>
+        <Button x:Name="AudioBar1MuteButton" Content="Mute" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,44,0,0" Width="80" Height="20" Click="AudioBar1MuteButton_Click"/>
+        <ComboBox x:Name="AudioBar1AppComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,14,0,0" Width="80" Height="20"/>
 
-        <Rectangle x:Name="AudioBar2VolumeRectangle" Margin="150,124,0,0" Width="20" Height="300" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="Gray"/>
-        <Label x:Name="AudioBar2VolumeLabel" Content="Volume: 100%" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="117.5,95,0,0" FontFamily="Ebrima" FontSize="12"/>
-        <Button x:Name="AudioBar2MuteButton" Content="Mute" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,74,0,0" Width="80" Height="20" Click="AudioBar2MuteButton_Click"/>
-        <ComboBox x:Name="AudioBar2AppComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,44,0,0" Width="80" Height="20" SelectionChanged="AudioBar2AppComboBox_SelectionChanged"/>
+        <Rectangle Margin="150,224,0,0" Width="20" Height="170" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="LimeGreen"/>
+        <Rectangle Margin="150,144,0,0" Width="20" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="Yellow"/>
+        <Rectangle Margin="150,94,0,0" Width="20" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="Red"/>
+        <Rectangle x:Name="AudioBar2VolumeRectangle" Margin="150,94,0,0" Width="20" Height="300" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="Gray"/>
+        <Label x:Name="AudioBar2VolumeTextLabel" Content="Volume:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="115,65,0,0" FontFamily="Ebrima" FontSize="12"/>
+        <Label x:Name="AudioBar2VolumeLabel" Content="100%" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,65,455,0" FontFamily="Ebrima" FontSize="12"/>
+        <Button x:Name="AudioBar2MuteButton" Content="Mute" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,44,0,0" Width="80" Height="20" Click="AudioBar2MuteButton_Click"/>
+        <ComboBox x:Name="AudioBar2AppComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,14,0,0" Width="80" Height="20"/>
 
-        <Rectangle x:Name="AudioBar3VolumeRectangle" Margin="250,124,0,0" Width="20" Height="300" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="Gray"/>
-        <Label x:Name="AudioBar3VolumeLabel" Content="Volume: 100%" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="217.5,95,0,0" FontFamily="Ebrima" FontSize="12"/>
-        <Button x:Name="AudioBar3MuteButton" Content="Mute" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,74,0,0" Width="80" Height="20" Click="AudioBar3MuteButton_Click"/>
-        <ComboBox x:Name="AudioBar3AppComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,44,0,0" Width="80" Height="20" SelectionChanged="AudioBar3AppComboBox_SelectionChanged"/>
+        <Rectangle Margin="250,224,0,0" Width="20" Height="170" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="LimeGreen"/>
+        <Rectangle Margin="250,144,0,0" Width="20" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="Yellow"/>
+        <Rectangle Margin="250,94,0,0" Width="20" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="Red"/>
+        <Rectangle x:Name="AudioBar3VolumeRectangle" Margin="250,94,0,0" Width="20" Height="300" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="Gray"/>
+        <Label x:Name="AudioBar3VolumeTextLabel" Content="Volume:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="215,65,0,0" FontFamily="Ebrima" FontSize="12"/>
+        <Label x:Name="AudioBar3VolumeLabel" Content="100%" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,65,355,0" FontFamily="Ebrima" FontSize="12"/>
+        <Button x:Name="AudioBar3MuteButton" Content="Mute" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,44,0,0" Width="80" Height="20" Click="AudioBar3MuteButton_Click"/>
+        <ComboBox x:Name="AudioBar3AppComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,14,0,0" Width="80" Height="20"/>
 
-        <Rectangle x:Name="AudioBar4VolumeRectangle" Margin="350,124,0,0" Width="20" Height="300" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="Gray"/>
-        <Label x:Name="AudioBar4VolumeLabel" Content="Volume: 100%" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="317.5,95,0,0" FontFamily="Ebrima" FontSize="12"/>
-        <Button x:Name="AudioBar4MuteButton" Content="Mute" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="320,74,0,0" Width="80" Height="20" Click="AudioBar4MuteButton_Click"/>
-        <ComboBox x:Name="AudioBar4AppComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="320,44,0,0" Width="80" Height="20" SelectionChanged="AudioBar4AppComboBox_SelectionChanged"/>
+        <Rectangle Margin="350,224,0,0" Width="20" Height="170" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="LimeGreen"/>
+        <Rectangle Margin="350,144,0,0" Width="20" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="Yellow"/>
+        <Rectangle Margin="350,94,0,0" Width="20" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="Red"/>
+        <Rectangle x:Name="AudioBar4VolumeRectangle" Margin="350,94,0,0" Width="20" Height="300" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="Gray"/>
+        <Label x:Name="AudioBar4VolumeTextLabel" Content="Volume:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="315,65,0,0" FontFamily="Ebrima" FontSize="12"/>
+        <Label x:Name="AudioBar4VolumeLabel" Content="100%" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,65,255,0" FontFamily="Ebrima" FontSize="12"/>
+        <Button x:Name="AudioBar4MuteButton" Content="Mute" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="320,44,0,0" Width="80" Height="20" Click="AudioBar4MuteButton_Click"/>
+        <ComboBox x:Name="AudioBar4AppComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="320,14,0,0" Width="80" Height="20"/>
 
-        <Rectangle x:Name="AudioBar5VolumeRectangle" Margin="450,124,0,0" Width="20" Height="300" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="Gray"/>
-        <Label x:Name="AudioBar5VolumeLabel" Content="Volume: 100%" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="417.5,95,0,0" FontFamily="Ebrima" FontSize="12"/>
-        <Button x:Name="AudioBar5MuteButton" Content="Mute" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="420,74,0,0" Width="80" Height="20" Click="AudioBar5MuteButton_Click"/>
-        <ComboBox x:Name="AudioBar5AppComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="420,44,0,0" Width="80" Height="20" SelectionChanged="AudioBar5AppComboBox_SelectionChanged"/>
+        <Rectangle Margin="450,224,0,0" Width="20" Height="170" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="LimeGreen"/>
+        <Rectangle Margin="450,144,0,0" Width="20" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="Yellow"/>
+        <Rectangle Margin="450,94,0,0" Width="20" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="Red"/>
+        <Rectangle x:Name="AudioBar5VolumeRectangle" Margin="450,94,0,0" Width="20" Height="300" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="Gray"/>
+        <Label x:Name="AudioBar5VolumeTextLabel" Content="Volume:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="415,65,0,0" FontFamily="Ebrima" FontSize="12"/>
+        <Label x:Name="AudioBar5VolumeLabel" Content="100%" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,65,155,0" FontFamily="Ebrima" FontSize="12"/>
+        <Button x:Name="AudioBar5MuteButton" Content="Mute" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="420,44,0,0" Width="80" Height="20" Click="AudioBar5MuteButton_Click"/>
+        <ComboBox x:Name="AudioBar5AppComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="420,14,0,0" Width="80" Height="20"/>
 
-        <Label x:Name="DeviceTextLabel" Content="Device: " HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,109,110" FontFamily="Ebrima" FontSize="12"/>
-        <Label x:Name="DeviceStatusLabel" Content="Not Connected" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="545,0,0,110" FontFamily="Ebrima" FontSize="12" Foreground="Red"/>
+        <Button x:Name="SaveButton" Content="Save Settings" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,24,40,0" Width="100" Height="30" Click="SaveButton_Click"/>
 
-        <Label x:Name="DeviceVIDLabel" Content="Device VID:" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,90,80" FontFamily="Ebrima" FontSize="12"/>
-        <TextBox x:Name="DeviceVIDTextBox" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,30,83" Width="60" Height="20"/>
-        
-        <Label x:Name="DevicePIDLabel" Content="Device PID:" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,90,50" FontFamily="Ebrima" FontSize="12"/>
-        <TextBox x:Name="DevicePIDTextBox" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,30,53" Width="60" Height="20"/>
+        <Label x:Name="DeviceTextLabel" Content="Device: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="500,94,0,0" FontFamily="Ebrima" FontSize="12"/>
+        <Label x:Name="DeviceStatusLabel" Content="Not Connected" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="545,94,0,0" FontFamily="Ebrima" FontSize="12" Foreground="Red"/>
 
-        <Button x:Name="SaveButton" Content="Save Settings" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,10" Width="100" Height="30" Click="SaveButton_Click"/>
+        <Label x:Name="DeviceVIDLabel" Content="Device VID:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="500,124,0,0" FontFamily="Ebrima" FontSize="12"/>
+        <TextBox x:Name="DeviceVIDTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="570,127,0,0" Width="60" Height="20"/>
+
+        <Label x:Name="DevicePIDLabel" Content="Device PID:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="501,159,0,0" FontFamily="Ebrima" FontSize="12"/>
+        <TextBox x:Name="DevicePIDTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="570,162,0,0" Width="60" Height="20"/>
+
+        <Label x:Name="BackgroundTaskTextLabel" Content="BackgroundTask: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="500,307,0,0" FontFamily="Ebrima" FontSize="16"/>
+        <Label x:Name="BackgroundTaskStatusLabel" Content="Not Running" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="516,331,0,0" FontFamily="Ebrima" FontSize="16" Foreground="Red"/>
+
+        <Button x:Name="RestartBackgroundTaskButton" Content="Start Background Task" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="492,364,0,0" Width="150" Height="30" Click="RestartBackgroundTaskButton_Click"/>
+
+
     </Grid>
 </Window>
