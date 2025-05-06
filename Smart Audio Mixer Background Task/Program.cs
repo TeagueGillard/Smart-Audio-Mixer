@@ -9,18 +9,27 @@ using NAudio.CoreAudioApi;
 class Program
 {
     static string filePath = System.IO.Path.Combine(Environment.CurrentDirectory, "config.json"); // Looks for config.json in the same directory as the executable
+
     static string AudioBar1AppString = null;
     static string AudioBar2AppString = null;
     static string AudioBar3AppString = null;
     static string AudioBar4AppString = null;
     static string AudioBar5AppString = null;
+
     static SerialPort _serialPort;
+
+    static readonly MMDeviceEnumerator deviceEnumerator = new();
+    static readonly MMDevice audioDevice = deviceEnumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
+    static readonly Dictionary<string, SimpleAudioVolume> sessionVolumeCache = new(StringComparer.OrdinalIgnoreCase);
 
     static void Main()
     {
         if (File.Exists(filePath))
         {
+            #if DEBUG
             Debug.WriteLine("Config file found. Reading settings...");
+            #endif
+
             JObject settings = JObject.Parse(System.IO.File.ReadAllText(filePath));
 
             AudioBar1AppString = (string)settings["appSource"]["AudioBar1"];
@@ -32,7 +41,9 @@ class Program
             string DeviceVIDString = (string)settings["device"]["DeviceVID"];
             string DevicePIDString = (string)settings["device"]["DevicePID"];
 
+            #if DEBUG
             Debug.WriteLine("Loaded Settings...");
+            #endif
 
             string comPort = null;
             string searchPattern = $"VID_{DeviceVIDString}&PID_{DevicePIDString}";
@@ -40,7 +51,10 @@ class Program
 
             RegistryKey usbDevicesKey = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Enum\USB");
 
+            #if DEBUG
             Debug.WriteLine("Searching for Device...");
+            #endif
+
             if (usbDevicesKey != null)
             {
                 foreach (string subKeyName in usbDevicesKey.GetSubKeyNames())
@@ -54,7 +68,11 @@ class Program
                             {
                                 RegistryKey instanceKey = deviceKey.OpenSubKey(instanceName);
                                 RegistryKey parametersKey = instanceKey?.OpenSubKey("Device Parameters");
+                                
+                                #if DEBUG
                                 Debug.WriteLine($"Found Device: {instanceName}");
+                                #endif
+
                                 if (parametersKey != null)
                                 {
                                     string portName = parametersKey.GetValue("PortName") as string;
@@ -73,7 +91,10 @@ class Program
             }
             if (!string.IsNullOrWhiteSpace(comPort))
             {
+                #if DEBUG
                 Debug.WriteLine($"Found COM port: {comPort}");
+                #endif
+
                 _serialPort = new SerialPort(comPort, 115200);
                 _serialPort.ReadTimeout = 500;
                 _serialPort.WriteTimeout = 500;
@@ -83,7 +104,7 @@ class Program
                 _serialPort.Open();
                 while (true)
                 {
-                    Thread.Sleep(300);
+                    Thread.Sleep(50);
                 }
             }
             else
@@ -96,35 +117,64 @@ class Program
 
     static void SerialDataReceived(object sender, SerialDataReceivedEventArgs e)
     {
-        Debug.WriteLine("Data Recieved");
+        #if DEBUG
+        Debug.WriteLine("Data Received");
+        #endif
+
         try
         {
             string line = _serialPort.ReadLine().Trim();
+            if (line.Length > 120)
+            {
+                _serialPort.DiscardInBuffer();
+                return;
+            }
+
+            #if DEBUG
             Debug.WriteLine($"Received: {line}");
+            #endif
 
-            var values = line
-                .Split(',', StringSplitOptions.RemoveEmptyEntries)
-                .Select(s => s.Trim().Split(':'))
-                .Where(p => p.Length == 2 && int.TryParse(p[1], out _))
-                .ToDictionary(p => p[0], p => int.Parse(p[1]));
+            int v1 = 0, v2 = 0, v3 = 0, v4 = 0, v5 = 0;
+            int m1 = 0, m2 = 0, m3 = 0, m4 = 0, m5 = 0;
 
-            float Volume1 = values.TryGetValue("Volume1", out int v1) ? v1 / 100f : 0f;
-            float Volume2 = values.TryGetValue("Volume2", out int v2) ? v2 / 100f : 0f;
-            float Volume3 = values.TryGetValue("Volume3", out int v3) ? v3 / 100f : 0f;
-            float Volume4 = values.TryGetValue("Volume4", out int v4) ? v4 / 100f : 0f;
-            float Volume5 = values.TryGetValue("Volume5", out int v5) ? v5 / 100f : 0f;
+            string[] pairs = line.Split(',');
 
-            bool isMuted1 = values.TryGetValue("Mute1", out int m1) && m1 == 1;
-            bool isMuted2 = values.TryGetValue("Mute2", out int m2) && m2 == 1;
-            bool isMuted3 = values.TryGetValue("Mute3", out int m3) && m3 == 1;
-            bool isMuted4 = values.TryGetValue("Mute4", out int m4) && m4 == 1;
-            bool isMuted5 = values.TryGetValue("Mute5", out int m5) && m5 == 1;
+            foreach (var pair in pairs)
+            {
+                int colonIndex = pair.IndexOf(':');
+                if (colonIndex <= 0 || colonIndex == pair.Length - 1)
+                    continue;
 
-            SetAppVolumeAndMute(AudioBar1AppString, Volume1, isMuted1);
-            SetAppVolumeAndMute(AudioBar2AppString, Volume2, isMuted2);
-            SetAppVolumeAndMute(AudioBar3AppString, Volume3, isMuted3);
-            SetAppVolumeAndMute(AudioBar4AppString, Volume4, isMuted4);
-            SetAppVolumeAndMute(AudioBar5AppString, Volume5, isMuted5);
+                string key = pair.Substring(0, colonIndex).Trim();
+                string valStr = pair.Substring(colonIndex + 1).Trim();
+
+                if (!int.TryParse(valStr, out int val))
+                    continue;
+
+                switch (key)
+                {
+                    case "Volume1": v1 = val; break;
+                    case "Volume2": v2 = val; break;
+                    case "Volume3": v3 = val; break;
+                    case "Volume4": v4 = val; break;
+                    case "Volume5": v5 = val; break;
+                    case "Mute1": m1 = val; break;
+                    case "Mute2": m2 = val; break;
+                    case "Mute3": m3 = val; break;
+                    case "Mute4": m4 = val; break;
+                    case "Mute5": m5 = val; break;
+                }
+            }
+
+            SetAppVolumeAndMute(AudioBar1AppString, v1 / 100f, m1 == 1);
+            SetAppVolumeAndMute(AudioBar2AppString, v2 / 100f, m2 == 1);
+            SetAppVolumeAndMute(AudioBar3AppString, v3 / 100f, m3 == 1);
+            SetAppVolumeAndMute(AudioBar4AppString, v4 / 100f, m4 == 1);
+            SetAppVolumeAndMute(AudioBar5AppString, v5 / 100f, m5 == 1);
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
         }
         catch (Exception ex)
         {
@@ -134,29 +184,35 @@ class Program
 
     static void SetAppVolumeAndMute(string appName, float volume, bool mute)
     {
-        Debug.WriteLine($"Setting volume for {appName}: Volume={volume * 100:F0}, Mute={mute}");
-        var enumerator = new MMDeviceEnumerator();
-        var device = enumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
-        var sessions = device.AudioSessionManager.Sessions;
+        if (string.IsNullOrWhiteSpace(appName)) return;
 
-        for (int i = 0; i < sessions.Count; i++)
+        try
         {
-            var session = sessions[i];
-            try
+            var sessions = audioDevice.AudioSessionManager.Sessions;
+
+            for (int i = 0; i < sessions.Count; i++)
             {
+                using var session = sessions[i];
+
                 if (session.GetSessionIdentifier.Contains(appName, StringComparison.OrdinalIgnoreCase))
                 {
-                    session.SimpleAudioVolume.Volume = volume;
-                    session.SimpleAudioVolume.Mute = mute;
-                    Debug.WriteLine($"Set {session.DisplayName}: Volume={volume * 100:F0}, Mute={mute}");
-                    session.Dispose();
-                    session = null;
-                    sessions = null;
-                    device = null;
-                    enumerator = null;
+                    var simpleVolume = session.SimpleAudioVolume;
+                    simpleVolume.Volume = volume;
+                    simpleVolume.Mute = mute;
+
+                    #if DEBUG
+                    Debug.WriteLine($"Set {appName}: Volume={volume * 100:F0}, Mute={mute}");
+                    #endif
+
+                    break;
                 }
             }
-            catch { }
+        }
+        catch (Exception ex)
+        {
+            #if DEBUG
+            Debug.WriteLine($"Error setting volume for {appName}: {ex.Message}");
+            #endif
         }
     }
 }
