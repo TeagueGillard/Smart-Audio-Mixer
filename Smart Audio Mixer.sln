@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smart Audio Mixer Config", "Smart Audio Mixer Config\Smart Audio Mixer Config.csproj", "{B03138B7-8510-4729-BA01-8B2E9EFD7CF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smart Audio Mixer Background Task", "Smart Audio Mixer Background Task\Smart Audio Mixer Background Task.csproj", "{C3ED877A-5145-5601-C96D-1BC5F74CBEFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{B03138B7-8510-4729-BA01-8B2E9EFD7CF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B03138B7-8510-4729-BA01-8B2E9EFD7CF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B03138B7-8510-4729-BA01-8B2E9EFD7CF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3ED877A-5145-5601-C96D-1BC5F74CBEFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3ED877A-5145-5601-C96D-1BC5F74CBEFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3ED877A-5145-5601-C96D-1BC5F74CBEFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3ED877A-5145-5601-C96D-1BC5F74CBEFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

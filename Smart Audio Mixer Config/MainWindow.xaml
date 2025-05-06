@@ -11,7 +11,7 @@
 
         <!-- Ensures the Editor and Compiled app have the same Width and Height-->
         <Rectangle x:Name="BackgroundRectangle" Fill="White" Width="660" Height="420" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Label x:Name="TitleLabel" Content="Smart Audio Mixer Config - © Teague Gillard 2025" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,395,0,0" FontFamily="Ebrima" FontSize="12" Foreground="Black"/>
+        <Label x:Name="TitleLabel" Content="Smart Audio Mixer Config - © Teague Gillard 2025" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,395,0,0" FontFamily="Ebrima" FontSize="12" Foreground="Black"/>
 
         <!-- Using Rectangles as it uses 60% LESS GPU than using Progress Bars-->
         <Rectangle Margin="50,224,0,0" Width="20" Height="170" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="LimeGreen"/>
@@ -71,7 +71,7 @@
         <TextBox x:Name="DevicePIDTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="570,162,0,0" Width="60" Height="20"/>
 
         <Label x:Name="BackgroundTaskTextLabel" Content="BackgroundTask: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="500,307,0,0" FontFamily="Ebrima" FontSize="16"/>
-        <Label x:Name="BackgroundTaskStatusLabel" Content="Not Running" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="516,331,0,0" FontFamily="Ebrima" FontSize="16" Foreground="Red"/>
+        <Label x:Name="BackgroundTaskStatusLabel" Content="Not Running" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="475,331,0,0" FontFamily="Ebrima" FontSize="16" Foreground="Red"/>
 
         <Button x:Name="RestartBackgroundTaskButton" Content="Start Background Task" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="492,364,0,0" Width="150" Height="30" Click="RestartBackgroundTaskButton_Click"/>
 

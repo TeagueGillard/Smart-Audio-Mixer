@@ -809,7 +809,11 @@ namespace Smart_Audio_Mixer_Config
             bool BackgroundTaskRunning = Process.GetProcessesByName("Smart Audio Mixer Background Task").Any();
             if (BackgroundTaskRunning)
             {
-                Process.Start("taskkill", "/F /IM Smart Audio Mixer Background Task.exe");
+                var processes = Process.GetProcessesByName("Smart Audio Mixer Background Task");
+                foreach (var process in processes)
+                {
+                    process.Kill();
+                }
                 await Task.Delay(1000);
                 Process.Start(backgroundTaskPath);
             }
@@ -871,7 +875,7 @@ namespace Smart_Audio_Mixer_Config
             if (deviceConnected)
             {
                 DeviceStatusLabel.Content = "Connected";
-                DeviceStatusLabel.Foreground = Brushes.Green;
+                DeviceStatusLabel.Foreground = Brushes.LimeGreen;
             }
             else
             {
@@ -886,7 +890,7 @@ namespace Smart_Audio_Mixer_Config
             if (BackgroundTaskRunning)
             {
                 BackgroundTaskStatusLabel.Content = "Running";
-                BackgroundTaskStatusLabel.Foreground = Brushes.Green;
+                BackgroundTaskStatusLabel.Foreground = Brushes.LimeGreen;
                 RestartBackgroundTaskButton.Content = "Restart Background Task";
             }
             else
