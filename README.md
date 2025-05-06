@@ -2,7 +2,7 @@
 
 ### Smart Audio Mixer is a lightweight hardware-controlled audio mixer.
 * A performance optimised background task to communicate with the Arduino/hardware device and adjust app volumes.
-* **Uses 0% CPU and < 5MB RAM** ( Tested using an AMD 5800X3D )
+* **Uses 0% CPU and < 4 MB RAM** ( Tested using an AMD 5800X3D )
 * A simple configuration app that allows the user to create and edit a config file easily.
 * The config app also shows the user the app's output volume, device connection status and the Background Task status.
 
