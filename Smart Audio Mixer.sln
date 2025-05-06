@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smart Audio Mixer Config", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smart Audio Mixer Background Task", "Smart Audio Mixer Background Task\Smart Audio Mixer Background Task.csproj", "{C3ED877A-5145-5601-C96D-1BC5F74CBEFF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Smart Audio Mixer Arduino Code", "Smart Audio Mixer Arduino Code", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		ArduinoCode\ArduinoCode.ino = ArduinoCode\ArduinoCode.ino
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
