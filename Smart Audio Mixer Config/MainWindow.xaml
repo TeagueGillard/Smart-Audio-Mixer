@@ -59,7 +59,8 @@
         <Button x:Name="AudioBar5MuteButton" Content="Mute" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="420,44,0,0" Width="80" Height="20" Click="AudioBar5MuteButton_Click"/>
         <ComboBox x:Name="AudioBar5AppComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="420,14,0,0" Width="80" Height="20"/>
 
-        <Button x:Name="SaveButton" Content="Save Settings" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,24,40,0" Width="100" Height="30" Click="SaveButton_Click"/>
+        <Button x:Name="RefreshButton" Content="Refresh" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,14,40,0" Width="100" Height="20" Click="RefreshButton_Click"/>
+        <Button x:Name="SaveButton" Content="Save Settings" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,44,40,0" Width="100" Height="20" Click="SaveButton_Click"/>
 
         <Label x:Name="DeviceTextLabel" Content="Device: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="500,94,0,0" FontFamily="Ebrima" FontSize="12"/>
         <Label x:Name="DeviceStatusLabel" Content="Not Connected" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="545,94,0,0" FontFamily="Ebrima" FontSize="12" Foreground="Red"/>
@@ -70,10 +71,11 @@
         <Label x:Name="DevicePIDLabel" Content="Device PID:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="501,159,0,0" FontFamily="Ebrima" FontSize="12"/>
         <TextBox x:Name="DevicePIDTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="570,162,0,0" Width="60" Height="20"/>
 
-        <Label x:Name="BackgroundTaskTextLabel" Content="BackgroundTask: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="500,307,0,0" FontFamily="Ebrima" FontSize="16"/>
-        <Label x:Name="BackgroundTaskStatusLabel" Content="Not Running" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="475,331,0,0" FontFamily="Ebrima" FontSize="16" Foreground="Red"/>
+        <Label x:Name="BackgroundTaskTextLabel" Content="BackgroundTask: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="500,287,0,0" FontFamily="Ebrima" FontSize="16"/>
+        <Label x:Name="BackgroundTaskStatusLabel" Content="Not Running" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="475,311,0,0" FontFamily="Ebrima" FontSize="16" Foreground="Red"/>
 
-        <Button x:Name="RestartBackgroundTaskButton" Content="Start Background Task" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="492,364,0,0" Width="150" Height="30" Click="RestartBackgroundTaskButton_Click"/>
+        <Button x:Name="RestartBackgroundTaskButton" Content="Start Background Task" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="492,344,0,0" Width="150" Height="20" Click="RestartBackgroundTaskButton_Click"/>
+        <Button x:Name="CloseBackgroundTaskButton" Content="Close Background Task" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="492,374,0,0" Width="150" Height="20" Click="CloseBackgroundTaskButton_Click" IsEnabled="False"/>
 
 
     </Grid>

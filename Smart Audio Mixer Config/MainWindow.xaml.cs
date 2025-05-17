@@ -797,6 +797,21 @@ namespace Smart_Audio_Mixer_Config
             GetAudioBarValue(5, AudioBar5AppComboBox.SelectedItem.ToString(), AudioBar5VolumeLabel, AudioBar5MuteButton);
         }
 
+        private async void RefreshButton_Click(object sender, EventArgs e)
+        {
+            if (_audioBarTimer != null)
+            {
+                _audioBarTimer.Stop();
+                _audioBarTimer = null;
+            }
+            AudioBar1AppComboBox.Items.Clear();
+            AudioBar2AppComboBox.Items.Clear();
+            AudioBar3AppComboBox.Items.Clear();
+            AudioBar4AppComboBox.Items.Clear();
+            AudioBar5AppComboBox.Items.Clear();
+            AsyncLoading();
+        }
+
         private async void RestartBackgroundTaskButton_Click(object sender, RoutedEventArgs e)
         {
             string backgroundTaskPath = System.IO.Path.Combine(Environment.CurrentDirectory, "Smart Audio Mixer Background Task.exe");
@@ -820,6 +835,26 @@ namespace Smart_Audio_Mixer_Config
             else
             {
                 Process.Start(backgroundTaskPath);
+            }
+        }
+
+        private async void CloseBackgroundTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            string backgroundTaskPath = System.IO.Path.Combine(Environment.CurrentDirectory, "Smart Audio Mixer Background Task.exe");
+            if (!File.Exists (backgroundTaskPath))
+            {
+                MessageBoxResult result = MessageBox.Show("Background Task Executable Not Found! \n Please Redownload The Application", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Process.Start(new ProcessStartInfo("https://github.com/TeagueGillard/Smart-Audio-Mixer/releases") { UseShellExecute = true });
+                return;
+            }
+            bool BackgroundTaskRunning = Process.GetProcessesByName("Smart Audio Mixer Background Task").Any();
+            if (BackgroundTaskRunning)
+            {
+                var processes = Process.GetProcessesByName("Smart Audio Mixer Background Task");
+                foreach (var process in processes)
+                {
+                    process.Kill();
+                }
             }
         }
 
@@ -892,12 +927,14 @@ namespace Smart_Audio_Mixer_Config
                 BackgroundTaskStatusLabel.Content = "Running";
                 BackgroundTaskStatusLabel.Foreground = Brushes.LimeGreen;
                 RestartBackgroundTaskButton.Content = "Restart Background Task";
+                CloseBackgroundTaskButton.IsEnabled = true;
             }
             else
             {
                 BackgroundTaskStatusLabel.Content = "Not Running";
                 BackgroundTaskStatusLabel.Foreground = Brushes.Red;
                 RestartBackgroundTaskButton.Content = "Start Background Task";
+                CloseBackgroundTaskButton.IsEnabled = false;
             }
         }
 
