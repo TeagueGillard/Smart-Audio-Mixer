@@ -7,5 +7,6 @@
 * The config app also shows the user the app's output volume, device connection status and the Background Task status.
 
 
-![image](https://github.com/user-attachments/assets/5d8e5a80-44d3-48d7-9c6e-c8078d443670)
- 
+
+ ![Smart Audio Mixer - Image](https://github.com/user-attachments/assets/d04ebc5b-3f32-4a6c-bf10-0c24127fa24f)
+
